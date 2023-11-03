@@ -14,12 +14,11 @@ const Content = ({ name, icon: Icon, dir }: ContentProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  console.log("pathname -< ", pathname);
 
   const isActive =
     (pathname === "/" && dir === "/") ||
-    pathname === dir ||
-    pathname.startsWith(`${dir}/`);
+    pathname === dir 
+    // pathname.startsWith(`${dir}/`);
   const onClick = () => {
     router.push(dir);
   };

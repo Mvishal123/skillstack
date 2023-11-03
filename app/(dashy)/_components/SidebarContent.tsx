@@ -24,6 +24,11 @@ const userContent = [
 
 const teacherContent = [
   {
+    name: "Home",
+    dir: "/teacher",
+    icon: Home,
+  },
+  {
     name: "Courses",
     dir: "/teacher/courses",
     icon: BookOpen,
