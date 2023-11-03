@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import Content from "./Content";
-import { Home, Layout, Compass } from "lucide-react";
+import { Home, Layout, Compass, BookOpen, BarChart } from "lucide-react";
+import { usePathname } from "next/navigation";
 
-const content = [
+const userContent = [
   {
     name: "Home",
     dir: "/",
@@ -21,8 +22,24 @@ const content = [
   },
 ];
 
+const teacherContent = [
+  {
+    name: "Courses",
+    dir: "/teacher/courses",
+    icon: BookOpen,
+  },
+  {
+    name: "Analytics",
+    dir: "/teacher/analytics",
+    icon: BarChart,
+  },
+];
+
 const SidebarContent = () => {
-  const contents = content;
+  const pathname = usePathname();
+
+  const isTeacher = pathname.includes("/teacher");
+  const contents = isTeacher ? teacherContent : userContent;
 
   return (
     <div className="w-full flex flex-col">

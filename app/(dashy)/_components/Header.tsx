@@ -1,7 +1,6 @@
 import React from "react";
 import MobileSidebar from "./MobileSidebar";
-import { UserButton } from "@clerk/nextjs";
-
+import DefaultHeaderContents from "./DefaultHeaderContents";
 
 const Header = () => {
   return (
@@ -9,10 +8,9 @@ const Header = () => {
       <div className="md:hidden">
         <MobileSidebar />
       </div>
-      <div className="ml-auto">
-        <UserButton />
+      <div className="ml-auto ">
+        <DefaultHeaderContents />
       </div>
-
     </div>
   );
 };
