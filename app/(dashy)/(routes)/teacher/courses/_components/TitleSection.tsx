@@ -16,6 +16,9 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 interface PageProps {
   initialTitle: string;
@@ -30,6 +33,7 @@ const formSchema = z.object({
 
 const TitleSection = ({ initialTitle, courseId }: PageProps) => {
   const [isEdit, setIsEdit] = useState(false);
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,11 +42,21 @@ const TitleSection = ({ initialTitle, courseId }: PageProps) => {
     },
   });
 
+  const handleEdit = () => setIsEdit((prev) => !prev);
+
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    try {
+      // console.log(data);
+      const res = await axios.patch(`/api/courses/${courseId}`, data);
+      toast.success("Title updated successfully");
+      handleEdit();
+      router.refresh();
+    } catch (error: any) {
+      toast.error("Something went wrong");
+      console.log(error.message);
+    }
   };
 
-  const handleEdit = () => setIsEdit((prev) => !prev);
   return (
     <div className="mt-4 rounded-lg bg-slate-100 p-4">
       <div className="flex justify-between items-center">
