@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs";
 import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 import TitleSection from "../_components/TitleSection";
+import DescriptionSection from "../_components/DescriptionSection";
 
 const CoursePage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -52,6 +53,7 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
                 <div className="text-xl font-bold">Customize your course</div>
               </div>
               <TitleSection initialTitle={course.title} courseId={course.id} />
+              <DescriptionSection initialValue={course.description!} courseId={course.id} />
             </div>
           </div>
         </div>
