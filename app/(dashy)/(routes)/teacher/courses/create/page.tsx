@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(3, {
@@ -25,6 +26,8 @@ const formSchema = z.object({
 });
 
 const CreateCoursePage = () => {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,8 +39,14 @@ const CreateCoursePage = () => {
     // console.log(formData);
 
     try {
-        const res = await axios.post("/api/courses", formData)
+        const res = await axios.post("/api/courses", formData);
+        console.log("CreateCoursePage", res.data);
+        router.push(`/teacher/courses/${res.data.course.userId}`);
+        toast.success("Course created successfully");
+        
     } catch (error:any) {
+      console.log(error.message);
+      
         toast.error("Something went wrong");
     }
   };

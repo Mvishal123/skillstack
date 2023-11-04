@@ -12,7 +12,7 @@ datasource db {
 
 model Course {
   id String @id @default(uuid())
-  userId String @unique
+  userId String
   title String @db.Text
   description String? @db.Text
   imageUrl String? @db.Text
@@ -21,8 +21,8 @@ model Course {
 
   attachments Attachment[]
 
-  categoryId String
-  Category Category @relation(fields: [categoryId], references: [id])
+  categoryId String?
+  Category Category? @relation(fields: [categoryId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
