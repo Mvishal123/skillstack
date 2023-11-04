@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Link from "next/link";
+import axios from "axios";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   title: z.string().min(3, {
@@ -30,8 +32,14 @@ const CreateCoursePage = () => {
     },
   });
 
-  const onSubmit = (formData: z.infer<typeof formSchema>) => {
-    console.log(formData);
+  const onSubmit = async (formData: z.infer<typeof formSchema>) => {
+    // console.log(formData);
+
+    try {
+        const res = await axios.post("/api/courses", formData)
+    } catch (error:any) {
+        toast.error("Something went wrong");
+    }
   };
 
   return (
