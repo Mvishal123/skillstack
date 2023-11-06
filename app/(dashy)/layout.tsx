@@ -5,7 +5,7 @@ import Header from "./_components/Header";
 const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-full">
-      <div className="md:pl-52 w-full inset-y-0 h-[85px] fixed z-0">
+      <div className="md:pl-52 w-full inset-y-0 h-[85px] fixed z-0 bg-[#ffffff]">
         <Header />
       </div>
       <div className="inset-y-0 fixed h-full border-r w-52 hidden md:flex z-50">

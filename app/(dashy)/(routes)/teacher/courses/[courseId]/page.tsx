@@ -5,6 +5,7 @@ import { LayoutDashboard } from "lucide-react";
 import { redirect } from "next/navigation";
 import TitleSection from "../_components/TitleSection";
 import DescriptionSection from "../_components/DescriptionSection";
+import ImageSection from "../_components/ImageSection";
 
 const CoursePage = async ({ params }: { params: { courseId: string } }) => {
   const { userId } = auth();
@@ -54,6 +55,7 @@ const CoursePage = async ({ params }: { params: { courseId: string } }) => {
               </div>
               <TitleSection initialTitle={course.title} courseId={course.id} />
               <DescriptionSection initialValue={course.description!} courseId={course.id} />
+              <ImageSection initialValue={course.imageUrl!} courseId={course.id}/>
             </div>
           </div>
         </div>

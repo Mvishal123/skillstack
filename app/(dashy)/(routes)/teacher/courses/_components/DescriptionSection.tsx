@@ -15,11 +15,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
+
 import { cn } from "@/lib/utils";
 
 interface PageProps {
@@ -60,7 +60,7 @@ const DescriptionSection = ({ initialValue, courseId }: PageProps) => {
   };
 
   return (
-    <div className="mt-4 rounded-lg bg-slate-100 p-4">
+    <div className="mt-4 rounded-lg bg-slate-100 px-4 py-2">
       <div className="flex justify-between items-center">
         <h1>Course description</h1>
         {!isEdit ? (
@@ -107,7 +107,6 @@ const DescriptionSection = ({ initialValue, courseId }: PageProps) => {
                 />
                 <Button
                   className="mt-3"
-                  size={"sm"}
                   disabled={
                     form.formState.isLoading ||
                     !form.formState.isValid ||
